@@ -130,9 +130,13 @@ class BaseController extends Controller {
     /**
      * Valida token CSRF
      */
-    protected function validateCSRF() {
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    protected function validateCSRF($token = null) {
+        // Si no se proporciona token, obtenerlo del POST
+        if ($token === null) {
             $token = $_POST['csrf_token'] ?? '';
+        }
+        
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if (!hash_equals($_SESSION['csrf_token'] ?? '', $token)) {
                 $this->jsonError('Token CSRF inválido', 403);
                 return false;
