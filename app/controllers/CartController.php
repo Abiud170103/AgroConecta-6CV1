@@ -8,8 +8,8 @@
  */
 
 require_once 'BaseController.php';
-require_once '../app/models/CarritoCompra.php';
-require_once '../app/models/Producto.php';
+require_once APP_PATH . '/models/Carrito.php';
+require_once APP_PATH . '/models/Producto.php';
 
 class CartController extends BaseController {
     

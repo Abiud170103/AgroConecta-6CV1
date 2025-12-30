@@ -9,17 +9,39 @@
 
 class Controller {
     protected $db;
+    protected $viewData = [];
     
     public function __construct() {
         $this->db = Database::getInstance();
     }
     
     /**
+     * Establece datos para las vistas
+     */
+    protected function setViewData($key, $value) {
+        $this->viewData[$key] = $value;
+    }
+    
+    /**
+     * Obtiene datos de las vistas
+     */
+    protected function getViewData($key = null, $default = null) {
+        if ($key === null) {
+            return $this->viewData;
+        }
+        
+        return isset($this->viewData[$key]) ? $this->viewData[$key] : $default;
+    }
+    
+    /**
      * Carga una vista con datos opcionales
      */
     protected function view($viewName, $data = []) {
+        // Combinar datos de la vista con datos globales del controlador
+        $allData = array_merge($this->viewData, $data);
+        
         // Extraer variables del array de datos
-        extract($data);
+        extract($allData);
         
         // Construir la ruta de la vista
         $viewPath = APP_PATH . '/views/' . $viewName . '.php';
@@ -40,6 +62,13 @@ class Controller {
         
         // Cargar el layout
         $this->view("shared/layouts/{$layout}", $data);
+    }
+    
+    /**
+     * Método render() para compatibilidad - usa viewWithLayout
+     */
+    protected function render($viewName, $data = [], $layout = 'main') {
+        $this->viewWithLayout($viewName, $data, $layout);
     }
     
     /**

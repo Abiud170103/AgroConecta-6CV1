@@ -8,9 +8,9 @@
  */
 
 require_once 'BaseController.php';
-require_once '../app/models/Producto.php';
-require_once '../app/models/Usuario.php';
-require_once '../app/models/Resena.php';
+require_once APP_PATH . '/models/Producto.php';
+require_once APP_PATH . '/models/Usuario.php';
+require_once APP_PATH . '/models/Resena.php';
 
 class ProductController extends BaseController {
     

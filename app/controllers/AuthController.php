@@ -8,8 +8,8 @@
  */
 
 require_once 'BaseController.php';
-require_once '../app/models/Usuario.php';
-require_once '../app/models/Notificacion.php';
+require_once APP_PATH . '/models/Usuario.php';
+require_once APP_PATH . '/models/Notificacion.php';
 
 class AuthController extends BaseController {
     

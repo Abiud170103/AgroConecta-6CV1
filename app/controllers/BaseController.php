@@ -41,6 +41,7 @@ class BaseController extends Controller {
         $this->setViewData('isLoggedIn', $this->isLoggedIn);
         $this->setViewData('siteName', 'AgroConecta');
         $this->setViewData('baseUrl', BASE_URL);
+        $this->setViewData('currentPage', $this->getCurrentPageName());
         
         // Contador de notificaciones no leídas
         if ($this->isLoggedIn) {
@@ -255,6 +256,22 @@ class BaseController extends Controller {
             return $message;
         }
         return null;
+    }
+    
+    /**
+     * Obtiene el nombre de la página actual basado en la URL
+     */
+    protected function getCurrentPageName() {
+        $url = $_SERVER['REQUEST_URI'];
+        $path = parse_url($url, PHP_URL_PATH);
+        $segments = explode('/', trim($path, '/'));
+        
+        // Si hay al menos un segmento después de la ruta base
+        if (!empty($segments) && $segments[0] !== '') {
+            return $segments[0];
+        }
+        
+        return 'home';
     }
     
     /**

@@ -24,6 +24,9 @@ define('BASE_URL', 'http://localhost/AgroConecta');
 require_once CONFIG_PATH . '/database.php';
 require_once CONFIG_PATH . '/routes.php';
 
+// Cargar funciones auxiliares
+require_once APP_PATH . '/core/helpers.php';
+
 // Cargar el sistema de enrutamiento
 require_once APP_PATH . '/core/Router.php';
 require_once APP_PATH . '/core/Controller.php';

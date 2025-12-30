@@ -59,6 +59,17 @@ spl_autoload_register(function ($className) {
     }
 });
 
+// ============================================
+// DEFINICIÓN DE CONSTANTES DE RUTA
+// ============================================
+
+// Definir rutas del sistema
+define('ROOT_PATH', dirname(__DIR__));
+define('APP_PATH', ROOT_PATH . '/app');
+define('CONFIG_PATH', ROOT_PATH . '/config');
+define('PUBLIC_PATH', ROOT_PATH . '/public');
+define('BASE_URL', 'http://localhost/AgroConecta');
+
 // Cargar configuración
 require_once '../config/database.php';
 

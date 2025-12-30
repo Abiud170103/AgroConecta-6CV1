@@ -8,8 +8,8 @@
  */
 
 require_once 'BaseController.php';
-require_once '../app/models/Producto.php';
-require_once '../app/models/Usuario.php';
+require_once APP_PATH . '/models/Producto.php';
+require_once APP_PATH . '/models/Usuario.php';
 
 class HomeController extends BaseController {
     

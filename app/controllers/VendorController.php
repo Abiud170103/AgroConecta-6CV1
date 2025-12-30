@@ -8,12 +8,12 @@
  */
 
 require_once 'BaseController.php';
-require_once '../app/models/Usuario.php';
-require_once '../app/models/Producto.php';
-require_once '../app/models/Pedido.php';
-require_once '../app/models/DetallePedido.php';
-require_once '../app/models/Resena.php';
-require_once '../app/models/Notificacion.php';
+require_once APP_PATH . '/models/Usuario.php';
+require_once APP_PATH . '/models/Producto.php';
+require_once APP_PATH . '/models/Pedido.php';
+require_once APP_PATH . '/models/DetallePedido.php';
+require_once APP_PATH . '/models/Resena.php';
+require_once APP_PATH . '/models/Notificacion.php';
 
 class VendorController extends BaseController {
     
