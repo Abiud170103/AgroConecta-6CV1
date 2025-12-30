@@ -34,10 +34,26 @@ $routes = [
     // Rutas del vendedor
     'vendedor/dashboard' => 'VendedorController@dashboard',
     'vendedor/perfil' => 'VendedorController@perfil',
-    'vendedor/productos' => 'VendedorController@productos',
-    'vendedor/productos/agregar' => 'VendedorController@agregarProducto',
-    'vendedor/productos/editar' => 'VendedorController@editarProducto',
-    'vendedor/productos/eliminar' => 'VendedorController@eliminarProducto',
+    
+    // Rutas de gestión de productos para vendedores
+    'vendor/products' => 'VendorProductController@index',
+    'vendor/products/create' => 'VendorProductController@create',
+    'vendor/products/store' => 'VendorProductController@store',
+    'vendor/products/edit' => 'VendorProductController@edit',
+    'vendor/products/update' => 'VendorProductController@update',
+    'vendor/products/delete' => 'VendorProductController@delete',
+    'vendor/products/duplicate' => 'VendorProductController@duplicate',
+    'vendor/products/status' => 'VendorProductController@updateStatus',
+    'vendor/products/stock' => 'VendorProductController@updateStock',
+    'vendor/products/bulk-action' => 'VendorProductController@bulkAction',
+    'vendor/products/stats' => 'VendorProductController@getStats',
+    'vendor/products/search' => 'VendorProductController@search',
+    
+    // Rutas compatibilidad (redirect a las nuevas rutas)
+    'vendedor/productos' => 'VendorProductController@index',
+    'vendedor/productos/agregar' => 'VendorProductController@create',
+    'vendedor/productos/editar' => 'VendorProductController@edit',
+    'vendedor/productos/eliminar' => 'VendorProductController@delete',
     'vendedor/pedidos' => 'VendedorController@pedidos',
     'vendedor/inventario' => 'VendedorController@inventario',
     
@@ -116,6 +132,21 @@ $route_methods = [
     'carrito/eliminar' => ['POST'],
     'pago/procesar' => ['POST'],
     'pago/webhook' => ['POST'],
-    'api/*' => ['GET', 'POST', 'PUT', 'DELETE']
+    
+    // Métodos para gestión de productos de vendedores
+    'vendor/products' => ['GET'],
+    'vendor/products/create' => ['GET'],
+    'vendor/products/store' => ['POST'],
+    'vendor/products/edit' => ['GET'],
+    'vendor/products/update' => ['PUT'],
+    'vendor/products/delete' => ['DELETE'],
+    'vendor/products/duplicate' => ['POST'],
+    'vendor/products/status' => ['PATCH'],
+    'vendor/products/stock' => ['PATCH'],
+    'vendor/products/bulk-action' => ['POST'],
+    'vendor/products/stats' => ['GET'],
+    'vendor/products/search' => ['GET'],
+    
+    'api/*' => ['GET', 'POST', 'PUT', 'DELETE', 'PATCH']
 ];
 ?>
