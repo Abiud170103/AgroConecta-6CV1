@@ -16,12 +16,12 @@ echo "=== PRUEBA DE MODELOS AGROCONECTA ===\n\n";
 
 // Verificar archivos necesarios
 $archivosRequeridos = [
-    '../config/database.php',
-    '../core/Database.php',
-    'Model.php',
-    'Usuario.php',
-    'Producto.php',
-    'Carrito.php'
+    'config/database.php',
+    'app/core/Database.php',
+    'app/models/Model.php',
+    'app/models/Usuario.php',
+    'app/models/Producto.php',
+    'app/models/Carrito.php'
 ];
 
 echo "1. Verificando archivos requeridos...\n";
@@ -36,14 +36,14 @@ foreach ($archivosRequeridos as $archivo) {
 
 // Incluir archivos
 try {
-    require_once '../config/database.php';
-    require_once '../core/Database.php';
-    require_once 'Model.php';
-    require_once 'Usuario.php';
-    require_once 'Producto.php';
-    require_once 'Carrito.php';
-    require_once 'Direccion.php';
-    require_once 'Notificacion.php';
+    require_once 'config/database.php';
+    require_once 'app/core/Database.php';
+    require_once 'app/models/Model.php';
+    require_once 'app/models/Usuario.php';
+    require_once 'app/models/Producto.php';
+    require_once 'app/models/Carrito.php';
+    require_once 'app/models/Direccion.php';
+    require_once 'app/models/Notificacion.php';
     echo "\n2. ✅ Archivos incluidos correctamente\n";
 } catch (Exception $e) {
     echo "\n2. ❌ Error al incluir archivos: " . $e->getMessage() . "\n";

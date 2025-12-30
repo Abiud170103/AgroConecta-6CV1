@@ -41,7 +41,7 @@ try {
     error_log('Error en AgroConecta: ' . $e->getMessage());
     
     // En producción, mostrar página de error genérica
-    if (defined('PRODUCTION') && PRODUCTION) {
+    if (defined('PRODUCTION') && PRODUCTION === true) {
         include APP_PATH . '/views/shared/error.php';
     } else {
         // En desarrollo, mostrar el error completo

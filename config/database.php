@@ -7,7 +7,7 @@
  */
 
 // Configuración de la base de datos
-define('DB_HOST', 'localhost');
+define('DB_HOST', '127.0.0.1');  // Cambiado de localhost
 define('DB_NAME', 'agroconecta_db');
 define('DB_USER', 'root');
 define('DB_PASS', '');
