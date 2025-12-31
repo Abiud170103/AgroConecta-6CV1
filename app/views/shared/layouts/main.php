@@ -32,6 +32,7 @@
     
     <!-- CSS -->
     <link rel="stylesheet" href="<?= asset('css/app.css') ?>">
+    <link rel="stylesheet" href="<?= asset('css/modern-enhancements.css') ?>">
     <?php if(isset($additionalCSS)): ?>
         <?php foreach($additionalCSS as $css): ?>
             <link rel="stylesheet" href="<?= asset("css/{$css}") ?>">
@@ -54,15 +55,15 @@
     <a class="skip-link" href="#main-content">Saltar al contenido principal</a>
     
     <!-- Header -->
-    <header class="header">
+    <header class="site-header">
         <!-- Top Bar -->
-        <div class="top-bar">
+        <div class="header-top">
             <div class="container">
                 <div class="row align-items-center">
                     <div class="col-md-6">
-                        <div class="contact-info">
-                            <span><i class="fas fa-phone"></i> +52 55 1234-5678</span>
-                            <span><i class="fas fa-envelope"></i> contacto@agroconecta.com</span>
+                        <div class="header-contact">
+                            <a href="tel:+5255123456788"><i class="fas fa-phone"></i> +52 55 1234-5678</a>
+                            <a href="mailto:contacto@agroconecta.com"><i class="fas fa-envelope"></i> contacto@agroconecta.com</a>
                         </div>
                     </div>
                     <div class="col-md-6 text-right">
@@ -95,15 +96,15 @@
                     </button>
                     
                     <!-- Search Bar -->
-                    <div class="search-bar">
+                    <div class="search-container">
                         <form action="<?= url('/productos/buscar') ?>" method="GET" class="search-form">
-                            <input type="text" name="q" class="search-input" placeholder="Buscar productos..." value="<?= $_GET['q'] ?? '' ?>" aria-label="Buscar productos">
-                            <select name="categoria" class="search-category" aria-label="Categoría">
+                            <input type="text" name="q" class="search-input" placeholder="Buscar productos frescos..." value="<?= $_GET['q'] ?? '' ?>" aria-label="Buscar productos">
+                            <select name="categoria" class="search-select" aria-label="Categoría">
                                 <option value="">Todas las categorías</option>
-                                <option value="vegetales" <?= ($_GET['categoria'] ?? '') === 'vegetales' ? 'selected' : '' ?>>Vegetales</option>
-                                <option value="frutas" <?= ($_GET['categoria'] ?? '') === 'frutas' ? 'selected' : '' ?>>Frutas</option>
-                                <option value="granos" <?= ($_GET['categoria'] ?? '') === 'granos' ? 'selected' : '' ?>>Granos</option>
-                                <option value="hierbas" <?= ($_GET['categoria'] ?? '') === 'hierbas' ? 'selected' : '' ?>>Hierbas</option>
+                                <option value="vegetales" <?= ($_GET['categoria'] ?? '') === 'vegetales' ? 'selected' : '' ?>>🥕 Vegetales</option>
+                                <option value="frutas" <?= ($_GET['categoria'] ?? '') === 'frutas' ? 'selected' : '' ?>>🍎 Frutas</option>
+                                <option value="granos" <?= ($_GET['categoria'] ?? '') === 'granos' ? 'selected' : '' ?>>🌾 Granos</option>
+                                <option value="hierbas" <?= ($_GET['categoria'] ?? '') === 'hierbas' ? 'selected' : '' ?>>🌿 Hierbas</option>
                             </select>
                             <button type="submit" class="search-btn" aria-label="Buscar">
                                 <i class="fas fa-search"></i>
@@ -147,7 +148,7 @@
                     <div class="user-actions">
                         <!-- Carrito -->
                         <div class="cart-dropdown">
-                            <a href="<?= url('/carrito') ?>" class="cart-link" aria-label="Ver carrito">
+                            <a href="<?= url('/carrito') ?>" class="cart-widget" aria-label="Ver carrito">
                                 <i class="fas fa-shopping-cart"></i>
                                 <span class="cart-count" id="cartCount"><?= cart_count() ?></span>
                                 <span class="cart-total">$<?= number_format(cart_total(), 2) ?></span>
@@ -197,10 +198,10 @@
                             </div>
                         <?php else: ?>
                             <div class="auth-buttons">
-                                <a href="<?= url('/login') ?>" class="btn btn-outline">
+                                <a href="<?= url('/login') ?>" class="btn-login">
                                     <i class="fas fa-sign-in-alt"></i> Iniciar Sesión
                                 </a>
-                                <a href="<?= url('/registro') ?>" class="btn btn-primary">
+                                <a href="<?= url('/registro') ?>" class="btn-register">
                                     <i class="fas fa-user-plus"></i> Registrarse
                                 </a>
                             </div>

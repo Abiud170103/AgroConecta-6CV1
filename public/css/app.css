@@ -5,36 +5,42 @@
 
 /* === VARIABLES CSS === */
 :root {
-    /* Colores principales */
-    --primary-color: #27ae60;
-    --primary-dark: #219a52;
-    --primary-light: #2ecc71;
-    --secondary-color: #3498db;
-    --secondary-dark: #2980b9;
+    /* Colores principales - Paleta moderna */
+    --primary-color: #00b894;
+    --primary-dark: #00a085;
+    --primary-light: #00cda3;
+    --primary-gradient: linear-gradient(135deg, #00b894, #00cda3);
+    --secondary-color: #6c5ce7;
+    --secondary-dark: #5f3dc4;
+    --accent-color: #fd79a8;
     
     /* Colores de estado */
-    --success-color: #27ae60;
-    --warning-color: #f39c12;
-    --error-color: #e74c3c;
-    --info-color: #3498db;
+    --success-color: #00b894;
+    --warning-color: #fdcb6e;
+    --error-color: #e84393;
+    --info-color: #74b9ff;
     
     /* Colores de texto */
-    --text-primary: #2c3e50;
-    --text-secondary: #7f8c8d;
-    --text-light: #95a5a6;
+    --text-primary: #2d3748;
+    --text-secondary: #718096;
+    --text-light: #a0aec0;
     --text-white: #ffffff;
+    --text-muted: #9ca3af;
     
     /* Colores de fondo */
     --bg-primary: #ffffff;
-    --bg-secondary: #f8f9fa;
-    --bg-dark: #2c3e50;
-    --bg-light: #ecf0f1;
+    --bg-secondary: #f7fafc;
+    --bg-tertiary: #edf2f7;
+    --bg-dark: #2d3748;
+    --bg-light: #e2e8f0;
+    --bg-overlay: rgba(0, 0, 0, 0.4);
     
     /* Tamaños */
-    --header-height: 70px;
+    --header-height: 80px;
     --footer-height: 60px;
-    --sidebar-width: 250px;
-    --container-max-width: 1200px;
+    --sidebar-width: 280px;
+    --container-max-width: 1400px;
+    --navbar-padding: 1.5rem;
     
     /* Espaciado */
     --spacing-xs: 0.25rem;
@@ -50,20 +56,23 @@
     --border-radius-lg: 12px;
     --border-radius-xl: 16px;
     
-    /* Sombras */
-    --shadow-sm: 0 2px 4px rgba(0,0,0,0.1);
-    --shadow-md: 0 4px 6px rgba(0,0,0,0.1);
-    --shadow-lg: 0 10px 15px rgba(0,0,0,0.1);
-    --shadow-xl: 0 20px 25px rgba(0,0,0,0.15);
+    /* Sombras modernas */
+    --shadow-sm: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    --shadow-md: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+    --shadow-lg: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+    --shadow-xl: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+    --shadow-colored: 0 8px 25px rgba(0,184,148,0.15);
+    --shadow-hover: 0 20px 40px rgba(0,0,0,0.1);
     
     /* Transiciones */
     --transition-fast: 0.15s ease-in-out;
     --transition-normal: 0.3s ease-in-out;
     --transition-slow: 0.5s ease-in-out;
     
-    /* Tipografía */
-    --font-family-primary: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    --font-family-heading: 'Poppins', sans-serif;
+    /* Tipografía moderna */
+    --font-family-primary: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    --font-family-heading: 'Poppins', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-family-mono: 'JetBrains Mono', 'Fira Code', Consolas, monospace;
     --font-size-xs: 0.75rem;
     --font-size-sm: 0.875rem;
     --font-size-base: 1rem;
@@ -91,8 +100,11 @@ body {
     font-size: var(--font-size-base);
     line-height: 1.6;
     color: var(--text-primary);
-    background-color: var(--bg-primary);
+    background-color: var(--bg-secondary);
     overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-feature-settings: 'kern' 1;
 }
 
 /* === TIPOGRAFÍA === */
@@ -157,33 +169,56 @@ a:hover {
 
 /* === COMPONENTES === */
 
-/* Botones */
+/* Botones Modernos */
 .btn {
-    display: inline-block;
-    padding: var(--spacing-sm) var(--spacing-lg);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--spacing-md) var(--spacing-xl);
     font-size: var(--font-size-base);
-    font-weight: 500;
+    font-weight: 600;
     text-align: center;
     text-decoration: none;
     background-color: var(--bg-light);
     color: var(--text-primary);
-    border: 1px solid transparent;
-    border-radius: var(--border-radius-md);
+    border: none;
+    border-radius: var(--border-radius-lg);
     cursor: pointer;
-    transition: var(--transition-normal);
+    transition: all var(--transition-normal);
     user-select: none;
     vertical-align: middle;
     white-space: nowrap;
+    letter-spacing: 0.025em;
+    min-height: 48px;
+    box-shadow: var(--shadow-sm);
+    position: relative;
+    overflow: hidden;
+}
+
+.btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    transition: var(--transition-normal);
+}
+
+.btn:hover::before {
+    left: 100%;
 }
 
 .btn:hover {
     text-decoration: none;
-    transform: translateY(-1px);
-    box-shadow: var(--shadow-md);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
 }
 
 .btn:active {
     transform: translateY(0);
+    box-shadow: var(--shadow-md);
 }
 
 .btn:disabled {
@@ -192,17 +227,19 @@ a:hover {
     transform: none !important;
 }
 
-/* Variantes de botones */
+/* Variantes de botones modernos */
 .btn-primary {
-    background-color: var(--primary-color);
+    background: var(--primary-gradient);
     color: var(--text-white);
     border-color: var(--primary-color);
+    box-shadow: var(--shadow-colored);
 }
 
 .btn-primary:hover {
-    background-color: var(--primary-dark);
+    background: linear-gradient(135deg, #00a085, #00b894);
     border-color: var(--primary-dark);
     color: var(--text-white);
+    box-shadow: var(--shadow-hover);
 }
 
 .btn-secondary {
@@ -279,31 +316,37 @@ a:hover {
     margin-bottom: var(--spacing-md);
 }
 
-/* Formularios */
+/* === FORMULARIOS MODERNOS === */
 .form-group {
-    margin-bottom: var(--spacing-lg);
+    margin-bottom: var(--spacing-xl);
+    position: relative;
 }
 
 .form-label {
     display: block;
     margin-bottom: var(--spacing-sm);
-    font-weight: 500;
+    font-weight: 600;
     color: var(--text-primary);
+    font-size: var(--font-size-sm);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
 }
 
 .form-control {
     display: block;
     width: 100%;
-    padding: var(--spacing-sm) var(--spacing-md);
+    padding: var(--spacing-md) var(--spacing-lg);
     font-size: var(--font-size-base);
     font-weight: 400;
     line-height: 1.5;
     color: var(--text-primary);
     background-color: var(--bg-primary);
     background-clip: padding-box;
-    border: 1px solid var(--bg-light);
-    border-radius: var(--border-radius-md);
-    transition: var(--transition-fast);
+    border: 2px solid var(--bg-light);
+    border-radius: var(--border-radius-lg);
+    transition: all var(--transition-normal);
+    box-shadow: inset var(--shadow-sm);
+    min-height: 48px;
 }
 
 .form-control:focus {
@@ -311,7 +354,13 @@ a:hover {
     background-color: var(--bg-primary);
     border-color: var(--primary-color);
     outline: 0;
-    box-shadow: 0 0 0 0.2rem rgba(39, 174, 96, 0.25);
+    box-shadow: 0 0 0 3px rgba(0,184,148,0.1), inset var(--shadow-sm);
+    transform: translateY(-1px);
+}
+
+.form-control::placeholder {
+    color: var(--text-light);
+    opacity: 1;
 }
 
 .form-control:invalid {
@@ -547,25 +596,36 @@ a:hover {
 .position-absolute { position: absolute !important; }
 .position-fixed { position: fixed !important; }
 
-/* === NAVEGACIÓN === */
+/* === NAVEGACIÓN MODERNA === */
 .navbar {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
     justify-content: space-between;
-    padding: var(--spacing-sm) 0;
-    background-color: var(--bg-primary);
+    padding: var(--navbar-padding) 0;
+    background: var(--bg-primary);
+    backdrop-filter: blur(10px);
     border-bottom: 1px solid var(--bg-light);
+    box-shadow: var(--shadow-sm);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    transition: var(--transition-normal);
 }
 
 .navbar-brand {
     display: flex;
     align-items: center;
     margin-right: var(--spacing-lg);
-    font-size: var(--font-size-xl);
-    font-weight: 700;
-    color: var(--primary-color);
+    font-size: var(--font-size-2xl);
+    font-weight: 800;
+    background: var(--primary-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
     text-decoration: none;
+    transition: var(--transition-normal);
+    letter-spacing: -0.02em;
 }
 
 .navbar-brand:hover {
@@ -587,17 +647,38 @@ a:hover {
 
 .nav-link {
     display: block;
-    padding: var(--spacing-sm) var(--spacing-md);
+    padding: var(--spacing-md) var(--spacing-lg);
     color: var(--text-secondary);
     text-decoration: none;
-    transition: var(--transition-fast);
-    border-radius: var(--border-radius-md);
+    transition: var(--transition-normal);
+    border-radius: var(--border-radius-lg);
+    font-weight: 500;
+    position: relative;
+    overflow: hidden;
+}
+
+.nav-link::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: var(--primary-gradient);
+    opacity: 0.1;
+    transition: var(--transition-normal);
+    z-index: -1;
+}
+
+.nav-link:hover::before {
+    left: 0;
 }
 
 .nav-link:hover {
     color: var(--primary-color);
-    background-color: var(--bg-secondary);
+    background-color: rgba(0,184,148,0.08);
     text-decoration: none;
+    transform: translateY(-1px);
 }
 
 .nav-link.active {
