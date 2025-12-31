@@ -724,9 +724,13 @@ class VendorProductController extends BaseController
      */
     private function hasOrders($productId)
     {
+        if (!$this->productModel || !isset($this->productModel->db)) {
+            return false;
+        }
+        
         $query = "SELECT COUNT(*) as count FROM detalle_pedidos WHERE producto_id = :producto_id";
         $result = $this->productModel->db->query($query, ['producto_id' => $productId]);
-        return $result && $result[0]['count'] > 0;
+        return $result && isset($result[0]) && $result[0]['count'] > 0;
     }
 
     /**

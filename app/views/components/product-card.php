@@ -154,16 +154,16 @@
         
         <!-- Precios -->
         <div class="product-pricing">
-            <?php if(isset($producto['precio_oferta']) && $producto['precio_oferta'] > 0 && $producto['precio_oferta'] < $producto['precio']): ?>
+            <?php if(isset($producto['precio_oferta']) && ($producto['precio_oferta'] ?? 0) > 0 && ($producto['precio_oferta'] ?? 0) < ($producto['precio'] ?? 0)): ?>
                 <div class="price-container">
-                    <span class="current-price">$<?= number_format($producto['precio_oferta'], 2) ?></span>
-                    <span class="original-price">$<?= number_format($producto['precio'], 2) ?></span>
+                    <span class="current-price">$<?= number_format($producto['precio_oferta'] ?? 0, 2) ?></span>
+                    <span class="original-price">$<?= number_format($producto['precio'] ?? 0, 2) ?></span>
                     <span class="discount-percentage">
-                        -<?= round((($producto['precio'] - $producto['precio_oferta']) / $producto['precio']) * 100) ?>%
+                        -<?= round(((($producto['precio'] ?? 0) - ($producto['precio_oferta'] ?? 0)) / max(($producto['precio'] ?? 1), 1)) * 100) ?>%
                     </span>
                 </div>
                 <div class="savings">
-                    Ahorras: $<?= number_format($producto['precio'] - $producto['precio_oferta'], 2) ?>
+                    Ahorras: $<?= number_format(($producto['precio'] ?? 0) - ($producto['precio_oferta'] ?? 0), 2) ?>
                 </div>
             <?php else: ?>
                 <div class="price-container">
@@ -172,9 +172,9 @@
             <?php endif; ?>
             
             <!-- Precio por unidad si aplica -->
-            <?php if(isset($producto['precio_por_unidad']) && $producto['precio_por_unidad'] != $producto['precio']): ?>
+            <?php if(isset($producto['precio_por_unidad']) && ($producto['precio_por_unidad'] ?? 0) != ($producto['precio'] ?? 0)): ?>
                 <div class="unit-price">
-                    $<?= number_format($producto['precio_por_unidad'], 2) ?> por unidad
+                    $<?= number_format($producto['precio_por_unidad'] ?? 0, 2) ?> por unidad
                 </div>
             <?php endif; ?>
         </div>
@@ -209,7 +209,7 @@
                     <button type="button" class="quantity-btn minus" data-action="decrease">
                         <i class="fas fa-minus"></i>
                     </button>
-                    <input type="number" class="quantity-input" value="1" min="1" max="<?= $producto['stock'] ?>" data-product-id="<?= $producto['id'] ?? '' ?>">
+                    <input type="number" class="quantity-input" value="1" min="1" max="<?= $producto['stock'] ?? 1 ?>" data-product-id="<?= $producto['id'] ?? '' ?>">
                     <button type="button" class="quantity-btn plus" data-action="increase">
                         <i class="fas fa-plus"></i>
                     </button>

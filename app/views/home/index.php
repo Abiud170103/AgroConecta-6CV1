@@ -5,8 +5,6 @@ $metaDescription = "AgroConecta - Conecta con agricultores locales y disfruta de
 $metaKeywords = "agricultura, productos frescos, verduras, frutas, orgánicos, local, campo, natural";
 $additionalCSS = ['home.css'];
 $additionalJS = ['home.js'];
-
-ob_start();
 ?>
 
 <!-- Hero Section -->
@@ -524,8 +522,3 @@ ob_start();
         </div>
     </div>
 </section>
-
-<?php 
-$content = ob_get_clean();
-include APP_PATH . '/views/layouts/main.php';
-?>

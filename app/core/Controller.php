@@ -57,11 +57,20 @@ class Controller {
      * Carga una vista con layout compartido
      */
     protected function viewWithLayout($viewName, $data = [], $layout = 'main') {
-        // Preparar datos para la vista
-        $data['content_view'] = $viewName;
+        // Combinar datos del controlador con los datos pasados
+        $viewData = array_merge($this->viewData, $data);
         
-        // Cargar el layout
-        $this->view("shared/layouts/{$layout}", $data);
+        // Renderizar la vista del contenido primero
+        ob_start();
+        $this->view($viewName, $viewData);
+        $content = ob_get_clean();
+        
+        // Pasar el contenido renderizado al layout
+        $viewData['content'] = $content;
+        $viewData['content_view'] = $viewName;
+        
+        // Cargar el layout con el contenido
+        $this->view("shared/layouts/{$layout}", $viewData);
     }
     
     /**

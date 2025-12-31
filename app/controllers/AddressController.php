@@ -577,7 +577,7 @@ class AddressController extends BaseController {
     /**
      * Verificar que el usuario esté autenticado
      */
-    private function requireAuth() {
+    protected function requireAuth() {
         if (!isset($_SESSION['user_id'])) {
             if ($this->isAjaxRequest()) {
                 $this->jsonResponse(['success' => false, 'message' => 'Sesión expirada'], 401);

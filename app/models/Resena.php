@@ -34,6 +34,11 @@ class Resena extends Model {
      */
     public function getByProducto($producto_id) {
         try {
+            if (!isset($this->pdo) || !$this->pdo) {
+                error_log("Error en getByProducto: PDO no está inicializado");
+                return [];
+            }
+            
             $sql = "SELECT r.*, u.nombre_completo, u.email 
                     FROM {$this->table} r 
                     INNER JOIN usuarios u ON r.usuario_id = u.id 
@@ -57,6 +62,11 @@ class Resena extends Model {
      */
     public function getByUsuario($usuario_id) {
         try {
+            if (!isset($this->pdo) || !$this->pdo) {
+                error_log("Error en getByUsuario: PDO no está inicializado");
+                return [];
+            }
+            
             $sql = "SELECT r.*, p.nombre_producto, p.imagen_url 
                     FROM {$this->table} r 
                     INNER JOIN productos p ON r.producto_id = p.id 
@@ -101,6 +111,11 @@ class Resena extends Model {
      */
     public function existeResena($producto_id, $usuario_id) {
         try {
+            if (!isset($this->pdo) || !$this->pdo) {
+                error_log("Error en existeResena: PDO no está inicializado");
+                return true; // Devolvemos true para prevenir duplicados en caso de error
+            }
+            
             $sql = "SELECT COUNT(*) FROM {$this->table} 
                     WHERE producto_id = ? AND usuario_id = ?";
             
@@ -121,6 +136,11 @@ class Resena extends Model {
      */
     public function getPromedioCalificacion($producto_id) {
         try {
+            if (!isset($this->pdo) || !$this->pdo) {
+                error_log("Error en getPromedioCalificacion: PDO no está inicializado");
+                return 0;
+            }
+            
             $sql = "SELECT AVG(calificacion) as promedio 
                     FROM {$this->table} 
                     WHERE producto_id = ?";
@@ -143,6 +163,21 @@ class Resena extends Model {
      */
     public function getEstadisticasProducto($producto_id) {
         try {
+            if (!isset($this->pdo) || !$this->pdo) {
+                error_log("Error en getEstadisticasProducto: PDO no está inicializado");
+                return [
+                    'total_resenas' => 0,
+                    'promedio' => 0,
+                    'calificacion_max' => 0,
+                    'calificacion_min' => 0,
+                    'cinco_estrellas' => 0,
+                    'cuatro_estrellas' => 0,
+                    'tres_estrellas' => 0,
+                    'dos_estrellas' => 0,
+                    'una_estrella' => 0
+                ];
+            }
+            
             $sql = "SELECT 
                         COUNT(*) as total_resenas,
                         AVG(calificacion) as promedio,
