@@ -10,20 +10,20 @@
              loading="lazy">
         
         <!-- Badge de producto -->
-        <?php if(isset($producto['en_oferta']) && $producto['en_oferta']): ?>
+        <?php if(isset($producto['en_oferta']) && ($producto['en_oferta'] ?? false)): ?>
             <div class="product-badge sale">
                 -<?= $producto['descuento'] ?? 0 ?>% OFF
             </div>
-        <?php elseif(isset($producto['es_nuevo']) && $producto['es_nuevo']): ?>
+        <?php elseif(isset($producto['es_nuevo']) && ($producto['es_nuevo'] ?? false)): ?>
             <div class="product-badge new">Nuevo</div>
-        <?php elseif(isset($producto['es_organico']) && $producto['es_organico']): ?>
+        <?php elseif(isset($producto['es_organico']) && ($producto['es_organico'] ?? false)): ?>
             <div class="product-badge organic">Orgánico</div>
         <?php endif; ?>
         
         <!-- Stock bajo -->
-        <?php if(isset($producto['stock']) && $producto['stock'] > 0 && $producto['stock'] <= 5): ?>
+        <?php if(isset($producto['stock']) && ($producto['stock'] ?? 0) > 0 && ($producto['stock'] ?? 0) <= 5): ?>
             <div class="product-badge low-stock">¡Últimas unidades!</div>
-        <?php elseif(isset($producto['stock']) && $producto['stock'] == 0): ?>
+        <?php elseif(isset($producto['stock']) && ($producto['stock'] ?? 0) == 0): ?>
             <div class="product-badge out-of-stock">Agotado</div>
         <?php endif; ?>
         
@@ -47,7 +47,7 @@
         </div>
         
         <!-- Overlay para producto agotado -->
-        <?php if(isset($producto['stock']) && $producto['stock'] == 0): ?>
+        <?php if(isset($producto['stock']) && ($producto['stock'] ?? 0) == 0): ?>
             <div class="out-of-stock-overlay">
                 <span>Producto Agotado</span>
             </div>
@@ -81,26 +81,26 @@
         
         <!-- Descripción corta -->
         <p class="product-description">
-            <?= htmlspecialchars(substr($producto['descripcion'] ?? '', 0, 100)) ?>
-            <?= strlen($producto['descripcion'] ?? '') > 100 ? '...' : '' ?>
+            <?= htmlspecialchars(substr(($producto['descripcion'] ?? ''), 0, 100)) ?>
+            <?= strlen(($producto['descripcion'] ?? '')) > 100 ? '...' : '' ?>
         </p>
         
         <!-- Categoría -->
         <?php if(isset($producto['categoria'])): ?>
             <div class="product-category">
-                <a href="<?= url('/productos/categoria/' . $producto['categoria']['slug']) ?>" class="category-link">
+                <a href="<?= url('/productos/categoria/' . ($producto['categoria']['slug'] ?? '')) ?>" class="category-link">
                     <i class="fas fa-tag"></i>
-                    <?= htmlspecialchars($producto['categoria']['nombre']) ?>
+                    <?= htmlspecialchars($producto['categoria']['nombre'] ?? 'Sin categoría') ?>
                 </a>
             </div>
         <?php endif; ?>
         
         <!-- Rating y reviews -->
-        <?php if(isset($producto['rating']) && $producto['rating'] > 0): ?>
+        <?php if(isset($producto['rating']) && ($producto['rating'] ?? 0) > 0): ?>
             <div class="product-rating">
                 <div class="stars">
                     <?php 
-                    $rating = floatval($producto['rating']);
+                    $rating = floatval($producto['rating'] ?? 0);
                     $fullStars = floor($rating);
                     $hasHalfStar = ($rating - $fullStars) >= 0.5;
                     
@@ -114,7 +114,7 @@
                         <?php endif; ?>
                     <?php endfor; ?>
                 </div>
-                <span class="rating-value"><?= number_format($rating, 1) ?></span>
+                <span class="rating-value"><?= number_format(($rating ?? 0), 1) ?></span>
                 <span class="rating-count">(<?= $producto['reviews_count'] ?? 0 ?> reviews)</span>
             </div>
         <?php else: ?>
@@ -133,21 +133,21 @@
             <?php if(isset($producto['unidad_medida'])): ?>
                 <span class="unit-measure">
                     <i class="fas fa-weight-hanging"></i>
-                    Por <?= htmlspecialchars($producto['unidad_medida']) ?>
+                    Por <?= htmlspecialchars($producto['unidad_medida'] ?? '') ?>
                 </span>
             <?php endif; ?>
             
             <?php if(isset($producto['origen'])): ?>
                 <span class="product-origin">
                     <i class="fas fa-map-marker-alt"></i>
-                    <?= htmlspecialchars($producto['origen']) ?>
+                    <?= htmlspecialchars($producto['origen'] ?? '') ?>
                 </span>
             <?php endif; ?>
             
             <?php if(isset($producto['fecha_cosecha'])): ?>
                 <span class="harvest-date">
                     <i class="fas fa-calendar-alt"></i>
-                    Cosechado: <?= date('d/m/Y', strtotime($producto['fecha_cosecha'])) ?>
+                    Cosechado: <?= date('d/m/Y', strtotime($producto['fecha_cosecha'] ?? '')) ?>
                 </span>
             <?php endif; ?>
         </div>
@@ -182,15 +182,15 @@
         <!-- Stock disponible -->
         <?php if(isset($producto['stock'])): ?>
             <div class="stock-info">
-                <?php if($producto['stock'] > 10): ?>
+                <?php if(($producto['stock'] ?? 0) > 10): ?>
                     <span class="stock-available">
                         <i class="fas fa-check-circle text-success"></i>
                         Disponible
                     </span>
-                <?php elseif($producto['stock'] > 0): ?>
+                <?php elseif(($producto['stock'] ?? 0) > 0): ?>
                     <span class="stock-low">
                         <i class="fas fa-exclamation-triangle text-warning"></i>
-                        Solo quedan <?= $producto['stock'] ?> unidades
+                        Solo quedan <?= $producto['stock'] ?? 0 ?> unidades
                     </span>
                 <?php else: ?>
                     <span class="stock-out">
@@ -203,7 +203,7 @@
         
         <!-- Acciones del producto (parte inferior) -->
         <div class="product-actions-bottom">
-            <?php if(isset($producto['stock']) && $producto['stock'] > 0): ?>
+            <?php if(isset($producto['stock']) && ($producto['stock'] ?? 0) > 0): ?>
                 <!-- Selector de cantidad -->
                 <div class="quantity-selector">
                     <button type="button" class="quantity-btn minus" data-action="decrease">
@@ -231,7 +231,7 @@
             <?php endif; ?>
             
             <!-- Compra rápida -->
-            <?php if(isset($producto['stock']) && $producto['stock'] > 0): ?>
+            <?php if(isset($producto['stock']) && ($producto['stock'] ?? 0) > 0): ?>
                 <button class="btn btn-outline buy-now" 
                         data-product-id="<?= $producto['id'] ?? '' ?>">
                     <i class="fas fa-bolt"></i>
@@ -243,17 +243,17 @@
         <!-- Características adicionales -->
         <?php if(isset($producto['caracteristicas']) && !empty($producto['caracteristicas'])): ?>
             <div class="product-features">
-                <?php foreach(array_slice($producto['caracteristicas'], 0, 3) as $feature): ?>
+                <?php foreach(array_slice(($producto['caracteristicas'] ?? []), 0, 3) as $feature): ?>
                     <span class="feature-tag">
                         <i class="fas fa-check"></i>
-                        <?= htmlspecialchars($feature) ?>
+                        <?= htmlspecialchars($feature ?? '') ?>
                     </span>
                 <?php endforeach; ?>
             </div>
         <?php endif; ?>
         
         <!-- Beneficios del producto -->
-        <?php if(isset($producto['es_organico']) && $producto['es_organico']): ?>
+        <?php if(isset($producto['es_organico']) && ($producto['es_organico'] ?? false)): ?>
             <div class="product-benefits">
                 <span class="benefit-tag organic">
                     <i class="fas fa-leaf"></i>
@@ -262,7 +262,7 @@
             </div>
         <?php endif; ?>
         
-        <?php if(isset($producto['es_local']) && $producto['es_local']): ?>
+        <?php if(isset($producto['es_local']) && ($producto['es_local'] ?? false)): ?>
             <div class="product-benefits">
                 <span class="benefit-tag local">
                     <i class="fas fa-map-marker-alt"></i>
@@ -271,7 +271,7 @@
             </div>
         <?php endif; ?>
         
-        <?php if(isset($producto['entrega_inmediata']) && $producto['entrega_inmediata']): ?>
+        <?php if(isset($producto['entrega_inmediata']) && ($producto['entrega_inmediata'] ?? false)): ?>
             <div class="product-benefits">
                 <span class="benefit-tag fast-delivery">
                     <i class="fas fa-shipping-fast"></i>

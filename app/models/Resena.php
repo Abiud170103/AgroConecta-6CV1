@@ -191,7 +191,7 @@ class Resena extends Model {
                     FROM {$this->table} 
                     WHERE producto_id = ?";
             
-            $stmt = $this->pdo->prepare($sql);
+            $stmt = $this->db->prepare($sql);
             $stmt->execute([$producto_id]);
             
             return $stmt->fetch(PDO::FETCH_ASSOC) ?: [];
