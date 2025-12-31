@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80" width="80" height="80">
+  <circle cx="40" cy="40" r="40" fill="#e9ecef"/>
+  <circle cx="40" cy="35" r="25" fill="#dee2e6"/>
+  <circle cx="35" cy="30" r="3" fill="#6c757d"/>
+  <circle cx="45" cy="30" r="3" fill="#6c757d"/>
+  <path d="M30 45 Q40 55 50 45" stroke="#6c757d" stroke-width="2" fill="none" stroke-linecap="round"/>
+  <text x="40" y="75" font-family="Inter, Arial, sans-serif" font-size="8" text-anchor="middle" fill="#adb5bd">Usuario</text>
+</svg>

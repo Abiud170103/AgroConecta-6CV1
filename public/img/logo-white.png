@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 60" width="200" height="60">
+  <rect width="200" height="60" fill="transparent" rx="10"/>
+  <text x="100" y="25" font-family="Poppins, Arial, sans-serif" font-size="18" font-weight="bold" text-anchor="middle" fill="white">AgroConecta</text>
+  <text x="100" y="42" font-family="Inter, Arial, sans-serif" font-size="10" text-anchor="middle" fill="rgba(255,255,255,0.8)">Del Campo a tu Mesa</text>
+  <circle cx="25" cy="30" r="8" fill="white" opacity="0.9"/>
+  <path d="M25 22 L25 38 M17 30 L33 30" stroke="#2ECC71" stroke-width="2" stroke-linecap="round"/>
+</svg>

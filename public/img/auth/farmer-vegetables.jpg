@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" width="400" height="300">
+  <rect width="400" height="300" fill="#f1f8e9"/>
+  <rect x="50" y="200" width="300" height="80" fill="#c8e6c9" rx="15"/>
+  <circle cx="120" cy="150" r="20" fill="#ff6b6b"/>
+  <circle cx="160" cy="140" r="18" fill="#4caf50"/>
+  <circle cx="200" cy="145" r="16" fill="#ffc107"/>
+  <circle cx="240" cy="135" r="22" fill="#e91e63"/>
+  <circle cx="280" cy="140" r="15" fill="#9c27b0"/>
+  <path d="M100 220 Q150 210 200 220 Q250 210 300 220" stroke="#4caf50" stroke-width="4" fill="none"/>
+  <circle cx="80" cy="100" r="30" fill="#fdd835"/>
+  <path d="M65 85 L95 85 M65 115 L95 115 M50 100 L110 100" stroke="#f57f17" stroke-width="2"/>
+  <rect x="320" y="80" width="60" height="40" fill="#8bc34a" rx="5"/>
+  <path d="M340 60 Q350 50 360 60" stroke="#4caf50" stroke-width="3" fill="none"/>
+  <text x="200" y="270" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="bold" text-anchor="middle" fill="#2e7d32">Productos Frescos del Campo</text>
+</svg>
