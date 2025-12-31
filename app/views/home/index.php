@@ -3,7 +3,7 @@ $title = "Inicio";
 $currentPage = "home";
 $metaDescription = "AgroConecta - Conecta con agricultores locales y disfruta de productos frescos y naturales directo del campo a tu mesa";
 $metaKeywords = "agricultura, productos frescos, verduras, frutas, orgánicos, local, campo, natural";
-$additionalCSS = ['home.css'];
+$additionalCSS = ['home.css', 'modern-enhancements.css', 'sidebar-modern.css', 'home-layout.css'];
 $additionalJS = ['home.js'];
 ?>
 
@@ -115,8 +115,17 @@ $additionalJS = ['home.js'];
     </div>
 </section>
 
-<!-- Categories Section -->
-<section class="categories-section">
+<!-- Main Content with Sidebar -->
+<section class="main-content-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3">
+                <!-- Include Modern Sidebar -->
+                <?php include APP_PATH . '/views/components/sidebar.php'; ?>
+            </div>
+            <div class="col-lg-9">
+                <!-- Categories Section -->
+                <section class="categories-section">
     <div class="container">
         <div class="section-header text-center">
             <h2 class="section-title">
@@ -157,6 +166,9 @@ $additionalJS = ['home.js'];
                     </a>
                 </div>
             <?php endforeach; ?>
+        </div>
+                </section>
+            </div>
         </div>
     </div>
 </section>

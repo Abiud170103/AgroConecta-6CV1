@@ -31,11 +31,12 @@
     <link rel="apple-touch-icon" sizes="180x180" href="<?= asset('img/apple-touch-icon.png') ?>">
     
     <!-- CSS -->
-    <link rel="stylesheet" href="<?= asset('css/app.css') ?>">
-    <link rel="stylesheet" href="<?= asset('css/modern-enhancements.css') ?>">
+    <link rel="stylesheet" href="<?= asset('css/app.css') ?>?v=<?= time() ?>">
+    <link rel="stylesheet" href="<?= asset('css/modern-enhancements.css') ?>?v=<?= time() ?>">
+    <link rel="stylesheet" href="<?= asset('css/sidebar-modern.css') ?>?v=<?= time() ?>">
     <?php if(isset($additionalCSS)): ?>
         <?php foreach($additionalCSS as $css): ?>
-            <link rel="stylesheet" href="<?= asset("css/{$css}") ?>">
+            <link rel="stylesheet" href="<?= asset("css/{$css}") ?>?v=<?= time() ?>">
         <?php endforeach; ?>
     <?php endif; ?>
     
